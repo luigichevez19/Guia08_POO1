@@ -60,9 +60,10 @@ public class EquiposServ extends HttpServlet {
                
             }
            if (CRUD.equals("Actualizar"))
-           {
+           { System.out.println("hola");
                 Equipos obj = new Equipos();
                 obj.setCodiEqui(Integer.parseInt(request.getParameter("codi").isEmpty()?"-1":request.getParameter("codi")));
+                //obj.setCodiEqui(8);
                 obj.setNombEqui(request.getParameter("nomb"));
                 obj.setDescEqui(request.getParameter("desc"));
                 if (new EquipoCtrl().actu(obj)) 
@@ -112,6 +113,7 @@ public class EquiposServ extends HttpServlet {
                 request.setAttribute("mensAlert", mens);
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
        }
+      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

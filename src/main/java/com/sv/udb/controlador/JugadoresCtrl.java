@@ -96,6 +96,44 @@ public class JugadoresCtrl {
         }
      return resp;
     }
+    public Jugadores ver2(int id)
+    {
+     Jugadores resp =null;
+     Connection con = new Conexion().getConn();
+        try 
+        {
+         PreparedStatement cmd = con.prepareStatement("select j.codi_juga,e.nomb_equi,j.nomb_juga,"
+         + "j.edad_juga,j.altu_juga,j.peso_juga from jugadores j,equipos e where j.codi_equi = e.codi_equi and j.codi_juga=?");
+         cmd.setInt(1,id);
+         ResultSet rs = cmd.executeQuery();
+         while(rs.next())
+         {
+         resp=(new Jugadores(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getDouble(5),rs.getDouble(6)));
+         }
+        }
+        catch (Exception e) 
+        {
+            System.out.println("Error: "+e.getMessage());
+        }
+         finally
+        {
+           try
+        {
+        if(con != null)
+        {
+        if(!con.isClosed())
+        {
+        con.close();
+        }
+        }
+        }
+        catch(SQLException err)
+            {
+                err.printStackTrace();
+            }
+        }
+     return resp;
+    }
     public boolean actu (Jugadores obj)
     {
     Connection con = new Conexion().getConn();
