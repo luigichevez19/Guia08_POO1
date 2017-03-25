@@ -41,10 +41,7 @@
          </div>
           <div class="row">
         <h1 class="col  s8 offset-s5">${mensAlert}</h1>
-        <h1 class="col  s8 offset-s5">${codi_equi}</h1>
-        <script>
-document.demo.cmbEquipo.value='${codi_equi}';
-</script>
+        
       <form method="POST" action="JugadoresServ" name="demo" class="col  s8 offset-s2" >
            <div class="row">
             <input type="text" name="codi" id="codi" value= "${codi}" hidden="hidden" /><br>
@@ -71,11 +68,32 @@ document.demo.cmbEquipo.value='${codi_equi}';
                 for(Equipos temp: new EquipoCtrl().ver())
                
                 { 
+                    int id=-1;
+                   
+                   if (request.getAttribute("codi_equi") != null)
+                   {
+                       
+                        id =(Integer)request.getAttribute("codi_equi");
+                     
+                   }
+                   
+                          
+                    
+                    if(temp.getCodiEqui() == id)
+                    {
                  %>
-                <option value="<%=temp.getCodiEqui()%>" ><%=temp.getNombEqui()%></option>;
+                        <option value="<%=temp.getCodiEqui()%>" SELECTED><%=temp.getNombEqui()%></option>;
                 
                
                 <%}
+                    else
+                    {
+                 %>
+                        <option value="<%=temp.getCodiEqui()%>" ><%=temp.getNombEqui()%></option>;
+                
+               
+                <%}
+                }
                 %>
      
     </select>

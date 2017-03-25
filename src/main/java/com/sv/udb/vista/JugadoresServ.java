@@ -105,7 +105,7 @@ public class JugadoresServ extends HttpServlet {
                     request.setAttribute("altura", obj.getAltura());
                     request.setAttribute("peso", obj.getPeso());
                     request.setAttribute("codi_equi", obj.getCodiEqui());
-                    System.out.println("hola"+obj.getCodiEqui());
+                    
 
                 }
                  
