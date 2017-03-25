@@ -25,6 +25,16 @@ public class Jugadores {
         this.NombreJ = NombreJ;
     }
 
+     public Jugadores(int CodiJ,int CodiEqui,String NombreJ, int Edad, double Altura, double Peso ) 
+    {
+        this.CodiJ = CodiJ;
+       this.CodiEqui=CodiEqui;
+        this.Edad = Edad;
+        this.Peso = Peso;
+        this.Altura = Altura;
+        this.NombreJ = NombreJ;
+     
+    }
 
     public Jugadores()
     {

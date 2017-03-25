@@ -102,13 +102,13 @@ public class JugadoresCtrl {
      Connection con = new Conexion().getConn();
         try 
         {
-         PreparedStatement cmd = con.prepareStatement("select j.codi_juga,e.nomb_equi,j.nomb_juga,"
-         + "j.edad_juga,j.altu_juga,j.peso_juga from jugadores j,equipos e where j.codi_equi = e.codi_equi and j.codi_juga=?");
+         PreparedStatement cmd = con.prepareStatement("select j.codi_juga,e.codi_Equi,j.nomb_juga,"
+         + "j.edad_juga,j.altu_juga,j.peso_juga,e.codi_equi from jugadores j,equipos e where j.codi_equi = e.codi_equi and j.codi_juga=?");
          cmd.setInt(1,id);
          ResultSet rs = cmd.executeQuery();
          while(rs.next())
          {
-         resp=(new Jugadores(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getDouble(5),rs.getDouble(6)));
+         resp=(new Jugadores(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getDouble(5),rs.getDouble(6)));
          }
         }
         catch (Exception e) 
