@@ -26,12 +26,13 @@ public class JugadoresCtrl {
     Connection con = new Conexion().getConn();
     try 
         {
-            PreparedStatement cmd = con.prepareStatement("Insert into jugadores values (Null,?,?,?,?,?)");
+            PreparedStatement cmd = con.prepareStatement("Insert into jugadores values (Null,?,?,?,?,?,?)");
             cmd.setInt(1, obj.getCodiEqui());
             cmd.setString(2,obj.getNombreJ());
             cmd.setInt(3, obj.getEdad());
             cmd.setDouble(4, obj.getAltura());
             cmd.setDouble(5, obj.getPeso());
+            cmd.setBytes(6, obj.getFoto());
             cmd.executeUpdate();
             resp=true;
         }
@@ -66,11 +67,12 @@ public class JugadoresCtrl {
         try 
         {
          PreparedStatement cmd = con.prepareStatement("select j.codi_juga,e.nomb_equi,j.nomb_juga,"
-         + "j.edad_juga,j.altu_juga,j.peso_juga from jugadores j,equipos e where j.codi_equi = e.codi_equi ");
+         + "j.edad_juga,j.altu_juga,j.peso_juga,foto_juga from jugadores j,equipos e where j.codi_equi = e.codi_equi ");
          ResultSet rs = cmd.executeQuery();
          while(rs.next())
          {
-         resp.add(new Jugadores(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getDouble(5),rs.getDouble(6)));
+         
+         resp.add(new Jugadores(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getDouble(5),rs.getDouble(6),rs.getBytes(7)));
          }
         }
         catch (Exception e) 

@@ -5,20 +5,24 @@
  */
 package com.sv.udb.vista;
 
+
 import com.sv.udb.controlador.EquipoCtrl;
 import com.sv.udb.modelo.Equipos;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.DataInputStream;
 
 /**
  *
  * @author Luis
  */
+@MultipartConfig
 @WebServlet(name = "EquiposServ", urlPatterns = {"/EquiposServ"})
 public class EquiposServ extends HttpServlet {
 
@@ -43,12 +47,28 @@ public class EquiposServ extends HttpServlet {
        else
        {
            String CRUD = request.getParameter("btnEqui");
+           
            if (CRUD.equals("Guardar"))
            {
                 Equipos obj = new Equipos();
                 //obj.setCodiEqui(0);
+               //FileInputStream fis = null;
                 obj.setNombEqui(request.getParameter("nomb"));
                 obj.setDescEqui(request.getParameter("desc"));
+                Part imagen = request.getPart("imagen");
+                int fotosize = (int)imagen.getSize();
+                byte[] foto = null;
+                if(imagen != null)
+                {
+                    foto = new byte[fotosize];
+                    try(DataInputStream dataImg = new DataInputStream((imagen.getInputStream())))
+                    {
+                       dataImg.readFully(foto);
+                    } 
+                 
+                    obj.setFoto(foto);
+                    
+                }      
                 if (new EquipoCtrl().guar(obj)) 
                 {
                     mens = "Guardado";
@@ -59,8 +79,9 @@ public class EquiposServ extends HttpServlet {
                 }
                
             }
+           
            if (CRUD.equals("Actualizar"))
-           { System.out.println("hola");
+           {   
                 Equipos obj = new Equipos();
                 obj.setCodiEqui(Integer.parseInt(request.getParameter("codi").isEmpty()?"-1":request.getParameter("codi")));
                 //obj.setCodiEqui(8);

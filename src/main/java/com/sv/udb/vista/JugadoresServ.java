@@ -7,18 +7,21 @@ package com.sv.udb.vista;
 
 import com.sv.udb.controlador.JugadoresCtrl;
 import com.sv.udb.modelo.Jugadores;
+import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Luis
  */
+@MultipartConfig
 @WebServlet(name = "JugadoresServ", urlPatterns = {"/JugadoresServ"})
 public class JugadoresServ extends HttpServlet {
 
@@ -51,6 +54,23 @@ public class JugadoresServ extends HttpServlet {
                 obj.setAltura(Double.parseDouble(request.getParameter("altura")));
                 obj.setPeso(Double.parseDouble(request.getParameter("peso")));
                 obj.setCodiEqui(Integer.parseInt(request.getParameter("cmbEquipo")));
+                Part imagen = request.getPart("imagen");
+                int fotosize = (int)imagen.getSize();
+                byte[] foto = null;
+                if(imagen != null)
+                {
+                    foto = new byte[fotosize];
+                    try(DataInputStream dataImg = new DataInputStream((imagen.getInputStream())))
+                    {
+                       dataImg.readFully(foto);
+                    } 
+                 
+                    obj.setFoto(foto);
+                    
+                }      
+                
+                
+                
                 if(new JugadoresCtrl().guar(obj))
                 {
                     mens="Guardado";

@@ -15,7 +15,9 @@ public class Jugadores {
     private int CodiEqui, Edad,CodiJ;
     private double Peso,Altura;
     private String NombreJ,NombreE;
-    public Jugadores(int CodiJ,String NombreE,String NombreJ, int Edad, double Altura, double Peso ) 
+    private byte[] foto;
+     
+    public Jugadores(int CodiJ,String NombreE,String NombreJ, int Edad, double Altura, double Peso, byte[]foto) 
     {
         this.CodiJ = CodiJ;
         this.NombreE = NombreE;
@@ -23,6 +25,7 @@ public class Jugadores {
         this.Peso = Peso;
         this.Altura = Altura;
         this.NombreJ = NombreJ;
+        this.foto = foto;
     }
 
      public Jugadores(int CodiJ,int CodiEqui,String NombreJ, int Edad, double Altura, double Peso ) 
@@ -33,12 +36,19 @@ public class Jugadores {
         this.Peso = Peso;
         this.Altura = Altura;
         this.NombreJ = NombreJ;
-     
+        
     }
 
     public Jugadores()
     {
     
+    }
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
     public int getCodiJ() {
         return CodiJ;

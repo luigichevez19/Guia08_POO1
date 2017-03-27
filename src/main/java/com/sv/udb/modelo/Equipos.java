@@ -5,6 +5,8 @@
  */
 package com.sv.udb.modelo;
 
+import java.io.FileInputStream;
+
 /**
  *
  * @author Luis
@@ -13,13 +15,23 @@ public class Equipos {
     private int CodiEqui;
     private String nombEqui;
     private String descEqui;
-public Equipos(int CodiEqui, String nombEqui, String descEqui) {
+    private byte[] foto;
+
+public Equipos(int CodiEqui, String nombEqui, String descEqui,byte[] foto) {
         this.CodiEqui = CodiEqui;
         this.nombEqui = nombEqui;
         this.descEqui = descEqui;
+        this.foto = foto;
     }
 
     public Equipos() {
+    }
+     public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
     public int getCodiEqui() {
         return CodiEqui;

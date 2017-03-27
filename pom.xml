@@ -27,6 +27,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.0.8</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.webjars.bower/materialize -->
+<dependency>
+    <groupId>org.webjars.bower</groupId>
+    <artifactId>materialize</artifactId>
+    <version>0.98.0</version>
+</dependency>
 
     </dependencies>
 

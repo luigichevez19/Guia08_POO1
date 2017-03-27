@@ -26,9 +26,10 @@ public class EquipoCtrl {
     Connection con = new Conexion().getConn();
         try 
         {
-            PreparedStatement cmd = con.prepareStatement("Insert into equipos values(Null,?,?)");
+            PreparedStatement cmd = con.prepareStatement("Insert into equipos values(Null,?,?,?)");
             cmd.setString(1,obj.getNombEqui());
             cmd.setString(2,obj.getDescEqui());
+            cmd.setBytes(3, obj.getFoto());
             cmd.executeUpdate();
             resp = true;
             
@@ -66,7 +67,7 @@ public class EquipoCtrl {
               ResultSet rs = cmd.executeQuery();
               while (rs.next())
               {
-              resp.add(new Equipos (rs.getInt(1),rs.getString(2),rs.getString(3)));
+              resp.add(new Equipos (rs.getInt(1),rs.getString(2),rs.getString(3),rs.getBytes(4)));
               }
         }
         catch (Exception e)
@@ -104,7 +105,7 @@ public class EquipoCtrl {
               while (rs.next())
               {
                   System.out.println(Codi+"consola");
-              resp=(new Equipos (rs.getInt(1),rs.getString(2),rs.getString(3)));
+              resp=(new Equipos (rs.getInt(1),rs.getString(2),rs.getString(3),rs.getBytes(4)));
               }
         }
         catch (Exception e)

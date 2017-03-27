@@ -1,3 +1,4 @@
+<%@page import="java.util.Base64"%>
 <%@page import="com.sv.udb.controlador.EquipoCtrl"%>
 <%@page import="com.sv.udb.modelo.Equipos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,12 +12,12 @@
     <link type='text/css' rel='stylesheet' href='css/icons.css'/>
   
     <!-- Import materialize.css -->
-    <link type='text/css' rel='stylesheet' href='css/materialize.min.css'  media='screen,projection'/>
-  <link type='text/css' rel='stylesheet' href='css/styles.css'  media='screen,projection'/>
+    <link type='text/css' rel='stylesheet' href='webjars/materialize/0.98.0/dist/css/materialize.min.css'  media='screen,projection'/>
     <!-- Let browser know website is optimized for mobile -->
     <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
-    <script type='text/javascript' src='js/jquery.min.js'></script>
-    <script type='text/javascript' src='js/materialize.min.js'></script>
+     <script type="text/javascript" src="webjars/jquery/3.2.1/dist/jquery.min.js"></script>
+    <script type='text/javascript' src='webjars/materialize/0.98.0/dist/js/jquery.min.js'></script>
+    <script type='text/javascript' src='webjars/materialize/0.98.0/dist/js/materialize.min.js'></script>
         <title>Equipos</title>
     </head>
     <body background="fondo.jpg">
@@ -33,7 +34,7 @@
          </div>
         <h1 class="col s4 offset-s4">${mensAlert}</h1>
         <div class="row">
-        <form method="POST" class="col  s8 offset-s2" action="EquiposServ" name="demo" >
+        <form method="POST" enctype="multipart/form-data" class="col  s8 offset-s2" action="EquiposServ" name="demo" >
           <div class="row">
             <input type="text" name="codi" id="codi" value= "${codi}" hidden="hidden"/><br>
             <div class="input-field col  s6 ">
@@ -44,6 +45,17 @@
              <input type="text" name="desc" id="desc" value="${desc}"/>
               <label for="edad">Descricion</label>
            </div>
+               <div class='input-field col s12'>
+      <div class="file-field input-field">
+            <button class="btn red darken-2">
+                <i class="material-icons">insert_photo</i>
+              <input type="file" name="imagen" id="imagen">
+            </button>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" name="imagen" type="text" placeholder='1200x1200px máx., 2MB máx., PNG/JPG/GIF'>
+            </div>  
+      </div>
+    </div>
              <input type="submit" class="btn blue-grey col s3 offset-s2" name="btnEqui" value="Guardar"/>  
              <input type="submit" class="btn blue-grey col s3 offset-s1" name="btnEqui" value="Actualizar"/>  <br>
           </form>
@@ -54,17 +66,22 @@
                 <tr>
                         <th>Cons</th>
                         <th>Nombre</th>
-                        <th>Duracion</th>
+                        <th>Descripcion</th>
+                        <th>Foto</th>
                 </tr>
                 <%
                 for(Equipos temp: new EquipoCtrl().ver())
-                { %>
+                { 
+                   byte[] photo = temp.getFoto();
+                    String bphoto = Base64.getEncoder().encodeToString(photo);
+                %>
                 <tr>
                     <td> 
    <input name="codiEquiRadi" type="radio" id="<%=temp.getCodiEqui()%>" value="<%=temp.getCodiEqui()%>" />
       <label for="<%=temp.getCodiEqui()%>"></label></td>
                     <td><%=temp.getNombEqui()%></td>
                     <td><%=temp.getDescEqui()%></td>
+                    <td> <div><img src="data:image/*;base64,<%=bphoto%>" class='materialboxed' width='50px' height='50px'/><div></td>
                 </tr>
                 <%
                  }
@@ -74,6 +91,6 @@
         <input type="submit" class="btn blue-grey col s3 offset-s1" name="btnEqui" value="Eliminar"/>  
     </form>
         </div>
-       <a href='JugadoresServ'>Ir a jugadores</a>
+       
     </body>
 </html>
