@@ -34,7 +34,7 @@
          </div>
         <h1 class="col s4 offset-s4">${mensAlert}</h1>
         <div class="row">
-        <form method="POST" enctype="multipart/form-data" class="col  s8 offset-s2" action="EquiposServ" name="demo" >
+        <form method="POST" enctype="multipart/form-data"  action="EquiposServ" name="demo" class="col  s8 offset-s2">
           <div class="row">
             <input type="text" name="codi" id="codi" value= "${codi}" hidden="hidden"/><br>
             <div class="input-field col  s6 ">
@@ -45,21 +45,21 @@
              <input type="text" name="desc" id="desc" value="${desc}"/>
               <label for="edad">Descricion</label>
            </div>
-               <div class='input-field col s12'>
-      <div class="file-field input-field">
-            <button class="btn red darken-2">
-                <i class="material-icons">insert_photo</i>
-              <input type="file" name="imagen" id="imagen">
-            </button>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" name="imagen" type="text" placeholder='1200x1200px máx., 2MB máx., PNG/JPG/GIF'>
-            </div>  
-      </div>
-    </div>
+               </div>
+     <div class="file-field input-field">
+                    <button class="btn red darken-2">
+                         <i class="material-icons">insert_photo</i>
+                        <input type="file" name="imagen" id="imagen">
+                    </button>
+                    <div class="file-path-wrapper">
+                      <input class="file-path validate" name="imagen" type="text" placeholder='1200x1200px máx., 2MB máx., PNG/JPG/GIF'>
+                    </div>  
+                </div>
              <input type="submit" class="btn blue-grey col s3 offset-s2" name="btnEqui" value="Guardar"/>  
              <input type="submit" class="btn blue-grey col s3 offset-s1" name="btnEqui" value="Actualizar"/>  <br>
           </form>
                </div>
+              <div class="row">
              <h1  class="col s7 offset-s3">Equipos registrados</h1>
         <form method="POST" action="EquiposServ" name="Tabla"  class="col s8 offset-s2">
         <table  class="striped ">  

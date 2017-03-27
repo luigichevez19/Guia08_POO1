@@ -108,6 +108,7 @@
              <input type="submit" class="btn blue-grey col s3 offset-s1 " name="btnJuga" value="Actualizar"/>  
              </form>
                 </div>
+                
                 <div class="row">
                 <h1 class="col s7 offset-s3">Jugadores registrados</h1>
                 <form method="POST" action="JugadoresServ" name="demo2" class="col s8 offset-s2" >
