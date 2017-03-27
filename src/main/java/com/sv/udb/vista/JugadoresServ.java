@@ -98,12 +98,26 @@ public class JugadoresServ extends HttpServlet {
             {
                
                 Jugadores obj = new Jugadores();
-                 obj.setCodiJ(Integer.parseInt(request.getParameter("codi").isEmpty()?"-1":request.getParameter("codi")));
+                obj.setCodiJ(Integer.parseInt(request.getParameter("codi").isEmpty()?"-1":request.getParameter("codi")));
                 obj.setNombreJ(request.getParameter("nomb"));
                 obj.setEdad(Integer.parseInt(request.getParameter("edad")));
                 obj.setAltura(Double.parseDouble(request.getParameter("altura")));
                 obj.setPeso(Double.parseDouble(request.getParameter("peso")));
                 obj.setCodiEqui(Integer.parseInt(request.getParameter("cmbEquipo")));
+                Part imagen = request.getPart("imagen");
+                int fotosize = (int)imagen.getSize();
+                byte[] foto = null;
+                if(imagen != null)
+                {
+                    foto = new byte[fotosize];
+                    try(DataInputStream dataImg = new DataInputStream((imagen.getInputStream())))
+                    {
+                       dataImg.readFully(foto);
+                    } 
+                 
+                    obj.setFoto(foto);
+                    
+                } 
                 if(new JugadoresCtrl().actu(obj))
                 {
                     mens="Actualizado";

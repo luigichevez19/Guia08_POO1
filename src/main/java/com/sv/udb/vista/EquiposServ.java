@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.DataInputStream;
+import java.util.Base64;
 
 /**
  *
@@ -87,6 +88,20 @@ public class EquiposServ extends HttpServlet {
                 //obj.setCodiEqui(8);
                 obj.setNombEqui(request.getParameter("nomb"));
                 obj.setDescEqui(request.getParameter("desc"));
+                 Part imagen = request.getPart("imagen");
+                int fotosize = (int)imagen.getSize();
+                byte[] foto = null;
+                if(imagen != null)
+                {
+                    foto = new byte[fotosize];
+                    try(DataInputStream dataImg = new DataInputStream((imagen.getInputStream())))
+                    {
+                       dataImg.readFully(foto);
+                    } 
+                 
+                    obj.setFoto(foto);
+                    
+                } 
                 if (new EquipoCtrl().actu(obj)) 
                 {
                     mens = "Actualizado";
@@ -123,7 +138,7 @@ public class EquiposServ extends HttpServlet {
                     request.setAttribute("codi", obje.getCodiEqui());
                     request.setAttribute("nomb", obje.getNombEqui());
                     request.setAttribute("desc", obje.getDescEqui());
-              
+                             
                }
                else
                 {

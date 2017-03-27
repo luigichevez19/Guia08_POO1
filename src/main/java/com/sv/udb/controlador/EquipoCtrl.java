@@ -171,10 +171,11 @@ try
  Connection con = new Conexion().getConn();
      try 
      {
-     PreparedStatement cmd = con.prepareStatement("update equipos set nomb_equi =?,desc_equi =? where codi_equi=?");
+     PreparedStatement cmd = con.prepareStatement("update equipos set nomb_equi =?,desc_equi =?, foto_equi=? where codi_equi=?");
      cmd.setString(1,obj.getNombEqui());
      cmd.setString(2,obj.getDescEqui());
-     cmd.setInt(3,obj.getCodiEqui());
+      cmd.setBytes(3, obj.getFoto());
+     cmd.setInt(4,obj.getCodiEqui());
      cmd.executeUpdate();
      resp=true;
      }

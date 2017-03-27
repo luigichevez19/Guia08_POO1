@@ -142,13 +142,15 @@ public class JugadoresCtrl {
     boolean resp = false;
         try 
         {
-         PreparedStatement cmd = con.prepareStatement("update jugadores set codi_equi=?, nomb_juga=?, edad_juga=?, altu_juga=?, peso_juga=? where codi_juga=?");
+         PreparedStatement cmd = con.prepareStatement("update jugadores set codi_equi=?, nomb_juga=?, edad_juga=?, altu_juga=?, peso_juga=?, foto_juga=? where codi_juga=?");
          cmd.setInt(1,obj.getCodiEqui());
          cmd.setString(2,obj.getNombreJ());
          cmd.setInt(3,obj.getEdad());
          cmd.setDouble(4,obj.getAltura());
          cmd.setDouble(5,obj.getPeso());
-         cmd.setInt(6,obj.getCodiJ());
+          cmd.setBytes(6, obj.getFoto());
+         cmd.setInt(7,obj.getCodiJ());
+         
          cmd.executeUpdate();
          resp=true;
         }
