@@ -33,15 +33,15 @@
          </div>
         <h1 class="col s4 offset-s4">${mensAlert}</h1>
         <div class="row">
-        <form method="POST" class="col  s8 offset-s2" action="EquiposServ" name="demo" >
+        <form method="POST" class="col  s8 offset-s2" action="guardarEquipo.jsp" name="demo" >
           <div class="row">
-            <input type="text" name="codi" id="codi" value= "${codi}" hidden="hidden"/><br>
+            <input type="text" name="codiEqui" id="codiEqui" value= "${codi}" hidden="hidden"/><br>
             <div class="input-field col  s6 ">
-            <input type="text" name="nomb" id="nomb" value="${nomb}"/>
+            <input type="text" name="nombEqui" id="nombEqui" value="${nomb}"/>
             <label for="nomb">Nombre Equipo</label>
               </div>
             <div class="input-field col  s6 ">
-             <input type="text" name="desc" id="desc" value="${desc}"/>
+             <input type="text" name="descEqui" id="descEqui" value="${desc}"/>
               <label for="edad">Descricion</label>
            </div>
              <input type="submit" class="btn blue-grey col s3 offset-s2" name="btnEqui" value="Guardar"/>  

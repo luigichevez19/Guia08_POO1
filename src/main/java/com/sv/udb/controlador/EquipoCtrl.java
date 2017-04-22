@@ -26,7 +26,7 @@ public class EquipoCtrl {
     Connection con = new Conexion().getConn();
         try 
         {
-            PreparedStatement cmd = con.prepareStatement("Insert into equipos values(Null,?,?)");
+            PreparedStatement cmd = con.prepareStatement("Insert into equipos values(Null,?,?,null)");
             cmd.setString(1,obj.getNombEqui());
             cmd.setString(2,obj.getDescEqui());
             cmd.executeUpdate();
