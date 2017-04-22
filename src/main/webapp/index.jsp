@@ -1,6 +1,7 @@
 <%@page import="com.sv.udb.controlador.EquipoCtrl"%>
 <%@page import="com.sv.udb.modelo.Equipos"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -44,8 +45,13 @@
              <input type="text" name="desc" id="desc" value="${desc}"/>
               <label for="edad">Descricion</label>
            </div>
+             <c:if test="${codi==null}">
+                 
              <input type="submit" class="btn blue-grey col s3 offset-s2" name="btnEqui" value="Guardar"/>  
+              </c:if>
+              <c:if test="${codi != '' and codi!=null}">
              <input type="submit" class="btn blue-grey col s3 offset-s1" name="btnEqui" value="Actualizar"/>  <br>
+             </c:if>
           </form>
                </div>
              <h1  class="col s7 offset-s3">Equipos registrados</h1>
@@ -57,21 +63,26 @@
                         <th>Duracion</th>
                 </tr>
                 <%
-                for(Equipos temp: new EquipoCtrl().ver())
-                { %>
-                <tr>
-                    <td> 
-   <input name="codiEquiRadi" type="radio" id="<%=temp.getCodiEqui()%>" value="<%=temp.getCodiEqui()%>" />
-      <label for="<%=temp.getCodiEqui()%>"></label></td>
-                    <td><%=temp.getNombEqui()%></td>
-                    <td><%=temp.getDescEqui()%></td>
-                </tr>
-                <%
-                 }
-                %>
+                request.setAttribute("listEquiJSTL",new EquipoCtrl().ver());
+                        %>
+                <c:forEach items="${listEquiJSTL}" var="temp">
+                    <tr>
+                                     <td> 
+   <input name="codiEquiRadi" type="radio" id="${temp.getCodiEqui()}" value="${temp.getCodiEqui()}" />
+      <label for="${temp.getCodiEqui()}"></label></td>
+                    <td>${temp.getNombEqui()}</td>
+                    <td>${temp.getDescEqui()}</td>   
+                        
+                    </tr>
+                    
+                </c:forEach>
+              
         </table>
+        
         <input type="submit" class="btn blue-grey col s3 offset-s2" name="btnEqui" value="Consultar"/>  
+         <c:if test="${codi != '' and codi!=null}">
         <input type="submit" class="btn blue-grey col s3 offset-s1" name="btnEqui" value="Eliminar"/>  
+         </c:if>
     </form>
         </div>
        <a href='JugadoresServ'>Ir a jugadores</a>
