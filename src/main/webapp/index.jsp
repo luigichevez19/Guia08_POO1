@@ -32,13 +32,17 @@
     <div class="nav-wrapper">
         <a href="#" class="brand-logo center"><img src="img/soccer.png"></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="EquiposServ">Equipos</a></li>
-        <li><a href="JugadoresServ">Jugadores</a></li>
+        <li><a href="EquiposServ"><fmt:message key="label.name10"/></a></li>
+        <li><a href="JugadoresServ"><fmt:message key="label.name12"/></a></li>
       </ul>
     </div>
   </nav>
          </div>
-            <form>
+            
+        <h1 class="col s4 offset-s4">${mensAlert}</h1>
+        <div class="row">
+            <div class="input-field col  s8">
+          <form class="col  s8 offset-s5">
        <fmt:message key="label.select_language" />: 
        <select id="language" name="language" onchange="submit();">
            <option value="es_ES"
@@ -51,8 +55,7 @@
           </option>
        </select>
      </form>
-        <h1 class="col s4 offset-s4">${mensAlert}</h1>
-        <div class="row">
+            </div>
         <form method="POST" enctype="multipart/form-data"  action="EquiposServ" name="demo" class="col  s8 offset-s2">
           <div class="row">
             <input type="text" name="codi" id="codi" value= "${codi}" hidden="hidden"/><br>

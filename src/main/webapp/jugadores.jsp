@@ -36,8 +36,8 @@
     <div class="nav-wrapper">
         <a href="#" class="brand-logo center"><img src="img/soccer.png"></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="EquiposServ">Equipos</a></li>
-        <li><a href="JugadoresServ">Jugadores</a></li>
+        <li><a href="EquiposServ"><fmt:message key="label.name10"/></a></li>
+        <li><a href="JugadoresServ"><fmt:message key="label.name12"/></a></li>
       </ul>
     </div>
   </nav>
@@ -140,7 +140,7 @@
               <th><fmt:message key="label.name5"/></th>
               <th><fmt:message key="label.name6"/></th>
               <th><fmt:message key="label.name7"/></th>
-              <th>Equipo</th>
+              <th><fmt:message key="label.name10"/></th>
               <th><fmt:message key="label.name3"/></th>
             </tr>
         </thead>
