@@ -1,3 +1,5 @@
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="java.util.Base64"%>
 <%@page import="com.sv.udb.controlador.EquipoCtrl"%>
 <%@page import="com.sv.udb.modelo.Equipos"%>
@@ -6,6 +8,10 @@
    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
+ <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="com.me.jsp.bundle.file" />
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
            <!-- Import Google Icon Font -->
@@ -32,6 +38,19 @@
     </div>
   </nav>
          </div>
+            <form>
+       <fmt:message key="label.select_language" />: 
+       <select id="language" name="language" onchange="submit();">
+          <option value="es_ES" 
+            <c:if test="${language=='es_SV'}">selected</c:if>>
+            <fmt:message key="label.spanish" />
+          </option>
+          <option value="en_US" 
+            <c:if test="${language=='en_US'}">selected</c:if>>
+            <fmt:message key="label.english" />
+          </option>
+       </select>
+     </form>
         <h1 class="col s4 offset-s4">${mensAlert}</h1>
         <div class="row">
         <form method="POST" enctype="multipart/form-data"  action="EquiposServ" name="demo" class="col  s8 offset-s2">
@@ -39,7 +58,7 @@
             <input type="text" name="codi" id="codi" value= "${codi}" hidden="hidden"/><br>
             <div class="input-field col  s6 ">
             <input type="text" name="nomb" id="nomb" value="${nomb}"/>
-            <label for="nomb">Nombre Equipo</label>
+            <label for="nomb"><fmt:message key="label.name"/></label>
               </div>
             <div class="input-field col  s6 ">
              <input type="text" name="desc" id="desc" value="${desc}"/>
@@ -91,6 +110,10 @@
         <input type="submit" class="btn blue-grey col s3 offset-s1" name="btnEqui" value="Eliminar"/>  
     </form>
         </div>
-       
+            <script>
+               $(document).ready(function() {
+    $('select').material_select();
+  });
+          </script>
     </body>
 </html>
