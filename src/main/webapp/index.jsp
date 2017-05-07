@@ -41,7 +41,7 @@
             <form>
        <fmt:message key="label.select_language" />: 
        <select id="language" name="language" onchange="submit();">
-          <option value="es_ES" 
+           <option value="es_ES"
             <c:if test="${language=='es_SV'}">selected</c:if>>
             <fmt:message key="label.spanish" />
           </option>
@@ -62,7 +62,7 @@
               </div>
             <div class="input-field col  s6 ">
              <input type="text" name="desc" id="desc" value="${desc}"/>
-              <label for="edad">Descricion</label>
+              <label for="edad"><fmt:message key="label.name2"/></label>
            </div>
                </div>
      <div class="file-field input-field">
@@ -84,9 +84,9 @@
         <table  class="striped ">  
                 <tr>
                         <th>Cons</th>
-                        <th>Nombre</th>
-                        <th>Descripcion</th>
-                        <th>Foto</th>
+                        <th><fmt:message key="label.name"/></th>
+                        <th><fmt:message key="label.name2"/></th>
+                        <th><fmt:message key="label.name3"/></th>
                 </tr>
                 <%
                 for(Equipos temp: new EquipoCtrl().ver())
