@@ -3,7 +3,8 @@
     Created on : 03-18-2017, 07:50:09 PM
     Author     : Luis
 --%>
-
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="java.util.Base64"%>
 <%@page import="com.sv.udb.controlador.JugadoresCtrl"%>
 <%@page import="com.sv.udb.modelo.Jugadores"%>
@@ -12,6 +13,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+     <c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+<fmt:setLocale value="${language}" />
+<fmt:setBundle basename="com.me.jsp.bundle.file" />
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
          <!-- Import Google Icon Font -->
@@ -38,7 +42,23 @@
     </div>
   </nav>
          </div>
+        
           <div class="row">
+              <div class="input-field col  s8">
+          <form class="col  s8 offset-s5">
+       <fmt:message key="label.select_language" />: 
+       <select id="language" name="language" onchange="submit();">
+           <option value="es_ES"
+            <c:if test="${language=='es_SV'}">selected</c:if>>
+            <fmt:message key="label.spanish" />
+          </option>
+          <option value="en_US" 
+            <c:if test="${language=='en_US'}">selected</c:if>>
+            <fmt:message key="label.english" />
+          </option>
+       </select>
+     </form>
+          </div>
         <h1 class="col  s8 offset-s5">${mensAlert}</h1>
            
       <form method="POST" enctype="multipart/form-data" action="JugadoresServ" name="demo" class="col  s8 offset-s2" >
@@ -46,23 +66,23 @@
             <input type="text" name="codi" id="codi" value= "${codi}" hidden="hidden" /><br>
            <div class="input-field col  s12 ">
            <input type="text" name="nomb" id="nomb" class="validate"  value="${nomb}" required/>
-            <label for="nomb">Nombre Jugador</label>
+            <label for="nomb"><fmt:message key="label.name4"/></label>
               </div>
            <div class="input-field col  s6 ">
            <input type="number" name="edad" id="edad" min="3" step="1" class="validate"  value="${edad}" required/><br>
-            <label for="edad">Edad Jugador</label>
+            <label for="edad"><fmt:message key="label.name5"/></label>
            </div>
             <div class="input-field col  s6 ">
            <input type="number" name="peso" id="peso" min="0.01" step="0.01" class="validate"  value="${peso}" required/><br>
-              <label for="peso">Peso Jugador</label>
+              <label for="peso"><fmt:message key="label.name6"/></label>
             </div>
             <div class="input-field col  s6">
            <input type="number" name="altura" id="altura"  min="0.01" step="0.01" class="validate"  value="${altura}" required/><br>
-             <label for="altura">Altura Jugador</label>
+             <label for="altura"><fmt:message key="label.name7"/></label>
             </div>  
              <div class="input-field col  s6">
            <select id="cmbEquipo" name="cmbEquipo" >
-      <option value="" disabled selected>Seleccione un equipo</option>
+      <option value="" disabled selected><fmt:message key="label.name8"/></option>
        <%
                 for(Equipos temp: new EquipoCtrl().ver())
                
@@ -91,7 +111,7 @@
                 %>
      
     </select>
-                  <label>Equipo</label>
+                  <label><fmt:message key="label.name10"/></label>
              </div>
            </div>
                 <div class="file-field input-field">
@@ -110,18 +130,18 @@
                 </div>
                 
                 <div class="row">
-                <h1 class="col s7 offset-s3">Jugadores registrados</h1>
+                <h1 class="col s7 offset-s3"><fmt:message key="label.name9"/></h1>
                 <form method="POST" action="JugadoresServ" name="demo2" class="col s8 offset-s2" >
    <table class="striped">
         <thead>
           <tr>
-              <th>Opcion</th>
-              <th>Nombre</th>
-              <th>Edad</th>
-              <th>Peso</th>
-              <th>Altura</th>
+              <th>Cons</th>
+              <th><fmt:message key="label.name4"/></th>
+              <th><fmt:message key="label.name5"/></th>
+              <th><fmt:message key="label.name6"/></th>
+              <th><fmt:message key="label.name7"/></th>
               <th>Equipo</th>
-              <th>Foto</th>
+              <th><fmt:message key="label.name3"/></th>
             </tr>
         </thead>
 

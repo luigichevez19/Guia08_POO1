@@ -79,7 +79,7 @@
           </form>
                </div>
               <div class="row">
-             <h1  class="col s7 offset-s3">Equipos registrados</h1>
+             <h1  class="col s7 offset-s3"><fmt:message key="label.name11"/></h1>
         <form method="POST" action="EquiposServ" name="Tabla"  class="col s8 offset-s2">
         <table  class="striped ">  
                 <tr>
@@ -110,10 +110,11 @@
         <input type="submit" class="btn blue-grey col s3 offset-s1" name="btnEqui" value="Eliminar"/>  
     </form>
         </div>
-            <script>
+            
+    </body>
+     <script>
                $(document).ready(function() {
     $('select').material_select();
   });
           </script>
-    </body>
 </html>
